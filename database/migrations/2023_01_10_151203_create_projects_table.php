@@ -1,5 +1,6 @@
 <?php
 
+use Hamcrest\Description;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,9 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('title', 30)->unique();
+            $table->string('name', 30);
+            $table->text('description', 255);
             $table->timestamps();
         });
     }
