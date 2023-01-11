@@ -23,7 +23,7 @@
 
 <body>
     <div id="app">
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow mb-4">
             <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-uppercase" href="#">Portfolio</a>
             <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -55,14 +55,14 @@
                     <div class="position-sticky pt-3 sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">
+                                <a class="nav-link active" aria-current="page" href="{{route('admin.dashboard')}}">
                                     <span data-feather="home" class="align-text-bottom"></span>
                                     <i class="fa-thin fa-house"></i>
                                     Dashboard
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route(projects.index)}}">
+                                <a class="nav-link" href="{{route('admin.projects.index')}}">
                                     <span data-feather="file" class="align-text-bottom"></span>
                                     <i class="fa-thin fa-pen"></i>
                                     Project

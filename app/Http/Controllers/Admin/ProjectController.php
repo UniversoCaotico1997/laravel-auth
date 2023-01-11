@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
@@ -15,8 +16,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // $project = Project::all();
-        return view('projects.index');
+        $projects = Project::orderByDesc('id')->get();
+
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
