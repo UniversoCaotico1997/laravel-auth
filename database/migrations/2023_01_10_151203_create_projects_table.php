@@ -18,7 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('title', 100)->unique();
             $table->string('slug');
-            $table->string('name', 30);
             $table->text('description', 255)->nullable();
             $table->timestamps();
         });

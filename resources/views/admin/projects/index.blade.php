@@ -6,6 +6,7 @@
 
 <div class="table-responsive">
     <h1>Projects</h1>
+    @include('partials.message')
     <table class="table table-striped
     table-hover	
     table-borderless
@@ -13,9 +14,9 @@
     align-middle">
         <thead class="table-light">
             <tr>
+                <th>ID</th>
                 <th>Title</th>
                 <th>Slug</th>
-                <th>Name</th>
                 <th>Description</th>
                 <th>Actions</th>
             </tr>
@@ -26,7 +27,6 @@
                 <td>{{$project->id}}</td>
                 <td scope="row">{{$project->title}}</td>
                 <td>{{$project->slug}}</td>
-                <td>{{$project->name}}</td>
                 <td>{{$project->description}}</td>
                 <td class="Actions">
                     <a href="#" class="btn btn-primary">
