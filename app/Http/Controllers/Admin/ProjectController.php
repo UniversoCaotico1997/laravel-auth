@@ -41,12 +41,25 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        // Visualizziamo al presenza dei dati
+        // Visualizziamo la presenza dei dati
         // dd($request->all());
 
         // validiamo i dati
         $val_data = $request->validated();
-        // dd($val_data);
+
+
+        // check if
+        if ($request->hasFile('cover_image')) {
+            // Import img in storage/app/public
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+
+            // check img
+            // dd($cover_image);
+
+            // Img Validate
+            $val_data['cover_image'] = $cover_image;
+        }
+
 
         // Creazione slug
         $project_slug = Str::slug($val_data['title']);
@@ -55,20 +68,11 @@ class ProjectController extends Controller
         // dd($val_data);
 
 
-        // TODO 
-        // Fare un check tramite if 
-
-        // Import img in storage/app/public
-        $cover_image = Storage::put('upload', $val_data['cover_image']);
-
-        // check img
-        dd($cover_image);
-
         // // Creazione dei nuovi dati validati
-        Project::create($val_data);
+        $project = Project::create($val_data);
 
         // Ritorniamo allo rotta index
-        return to_route('admin.projects.index')->with('message', "Project added successfully");
+        return to_route('admin.projects.index')->with('message', "Project id: $project->id added successfully");
     }
 
     /**
@@ -109,6 +113,21 @@ class ProjectController extends Controller
         $val_data = $request->validated();
         // dd($val_data);
 
+        // check if
+        if ($request->hasFile('cover_image')) {
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+            // Import img in storage/app/public
+            $cover_image = Storage::put('uploads', $val_data['cover_image']);
+
+            // check img
+            // dd($cover_image);
+
+            // Img Validate
+            $val_data['cover_image'] = $cover_image;
+        }
+
         // Creazione slug
         $project_slug = Str::slug($val_data['title']);
         // dd($project_slug);
@@ -120,7 +139,7 @@ class ProjectController extends Controller
         $project->update($val_data);
 
         // Ritorniamo allo rotta index
-        return to_route('admin.projects.index')->with('message', "Project change successfully");
+        return to_route('admin.projects.index')->with('message', "Project id: $project->id update successfully");
     }
 
     /**
@@ -131,6 +150,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return to_route('admin.projects.index')->with('message', "Project id: $project->id Deleted successfully");
     }
 }
