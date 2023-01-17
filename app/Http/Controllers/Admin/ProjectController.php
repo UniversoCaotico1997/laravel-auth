@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -53,7 +54,17 @@ class ProjectController extends Controller
         $val_data['slug'] = $project_slug;
         // dd($val_data);
 
-        // Creazione  Project
+
+        // TODO 
+        // Fare un check tramite if 
+
+        // Import img in storage/app/public
+        $cover_image = Storage::put('upload', $val_data['cover_image']);
+
+        // check img
+        dd($cover_image);
+
+        // // Creazione dei nuovi dati validati
         Project::create($val_data);
 
         // Ritorniamo allo rotta index

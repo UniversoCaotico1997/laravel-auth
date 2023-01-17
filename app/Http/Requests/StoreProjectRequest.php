@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:projects,title|min:5|max:100',
+            'cover_image' => 'nullable',
             'description' => 'nullable|max:255'
         ];
     }

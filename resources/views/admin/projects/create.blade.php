@@ -6,7 +6,7 @@
 <div class="container">
     <h1>Create a New Project</h1>
     @include('partials.errors')
-    <form action="{{route('admin.projects.store')}}" method="post">
+    <form action="{{route('admin.projects.store')}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
